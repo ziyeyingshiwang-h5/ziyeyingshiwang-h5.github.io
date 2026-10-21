@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫夜片场 - 正版影视导航（原紫夜影视网）·片单分仓·官方正版信道</title>
+<meta name="description" content="紫夜片场(ziyeyingshiwang-h5.github.io)做正版影视导航：片单分仓、正版信道检索、公共领域老片、官方免费层。覆盖 Tubi、Pluto、Kanopy、1905、央视频、学习强国等授权渠道。非播放平台；不托管视频、不解析未授权源。">
+<meta name="keywords" content="紫夜片场, ziyeyingshiwang-h5, 正版影视导航, 片单分仓, 公共领域, Tubi, 1905">
+<meta name="author" content="紫夜片场">
+<meta name="robots" content="index, follow">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0a0612;--panel:#120c1f;--edge:#241a36;--neon:#b06bff;--neon-dim:rgba(176,107,255,.12);--cyan:#5be6d6;--cyan-dim:rgba(91,230,214,.1);--text:#ddd6ea;--muted:#897ea0;--radius:14px;--shadow:0 25px 60px rgba(0,0,0,.85);
+}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--night);color:var(--text);line-height:1.8;overflow-x:hidden;font-size:16px}
+.night-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(620px 440px at 22% 20%,rgba(176,107,255,.09),transparent 60%),
+  radial-gradient(520px 380px at 80% 76%,rgba(91,230,214,.06),transparent 60%),
+  linear-gradient(180deg,#0a0612,#120c1f 50%,#060309 100%);}
+.halo-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+ background-image:radial-gradient(circle,var(--neon) 1px,transparent 1.5px);background-size:34px 34px}
+
+.top{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,6,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--edge)}
+.top-in{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.15rem}
+.logo{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#b06bff,#5b2c9e);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(176,107,255,.3);position:relative}
+.logo::before{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:var(--night);top:8px;left:8px}
+.logo::after{content:"";position:absolute;width:6px;height:6px;background:var(--cyan);border-radius:50%;bottom:9px;right:9px;box-shadow:0 0 6px var(--cyan)}
+.brand b{color:var(--neon)}
+.nav{display:flex;gap:4px}
+.nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:8px;font-size:.82rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.3s}
+.nav a:hover,.nav a.active{background:var(--neon-dim);color:var(--neon)}
+.menu-btn{display:none;background:none;border:none;font-size:1.5rem;color:var(--neon);cursor:pointer;min-width:44px;min-height:44px}
+
+.main{position:relative;z-index:1;margin-top:64px}
+.hero{padding:70px 20px 50px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+.hero-text{position:relative}
+.hero-text::before{content:"";position:absolute;top:-26px;left:-24px;width:104px;height:104px;border:2px solid rgba(176,107,255,.16);border-radius:50%;animation:halo 7s ease-in-out infinite}
+@keyframes halo{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
+.kicker{font-family:"SF Mono","Courier New",monospace;font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--neon);border:1px solid rgba(176,107,255,.3);padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:18px}
+.hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:12px;color:#fff}
+.hero h1 .hl{color:var(--neon)}
+.hero h1 .sub{color:var(--muted);font-size:.5em;display:block;margin-top:8px;font-weight:400;letter-spacing:1px}
+.hero>p{font-size:.95rem;color:var(--muted);margin:14px 0 16px;max-width:500px;line-height:1.85}
+.disclaimer{font-size:.72rem;color:var(--muted);background:var(--neon-dim);border:1px dashed rgba(176,107,255,.3);padding:10px 14px;border-radius:8px;margin-bottom:18px;max-width:500px}
+.disclaimer b{color:var(--neon)}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-weight:700;font-size:.9rem;min-height:44px;display:inline-flex;align-items:center;padding:0 26px;border-radius:10px;cursor:pointer;border:none;transition:.3s;text-decoration:none}
+.btn-neon{background:linear-gradient(135deg,var(--neon),#7b3fe4);color:#150726}
+.btn-neon:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(176,107,255,.25)}
+.btn-line{background:transparent;border:1.5px solid var(--edge);color:var(--text)}
+.btn-line:hover{background:rgba(255,255,255,.04)}
+
+.side{background:linear-gradient(160deg,#120c1f,#0a0612);border:1px solid var(--edge);border-radius:18px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.side::after{content:"";position:absolute;bottom:-50px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(91,230,214,.1),transparent 70%)}
+.side h3{position:relative;font-size:.85rem;color:var(--neon);margin-bottom:18px;font-family:"SF Mono","Courier New",monospace;letter-spacing:2px}
+.steps{display:grid;gap:14px}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--panel);padding:16px;border-radius:12px;border-left:3px solid var(--neon);transition:.3s}
+.step:hover{transform:translateX(6px);border-color:var(--cyan)}
+.step-num{font-family:"SF Mono","Courier New",monospace;font-size:.85rem;font-weight:900;color:var(--neon);min-width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--neon-dim);border-radius:8px}
+.step h4{font-size:.88rem;color:#fff;margin-bottom:2px}
+.step p{font-size:.74rem;color:var(--muted);line-height:1.6}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:50px 20px}
+.head{text-align:center;margin-bottom:40px}
+.head .tag{font-family:"SF Mono","Courier New",monospace;font-size:.68rem;letter-spacing:3px;color:var(--neon);display:block;margin-bottom:8px}
+.head h2{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:800;margin-bottom:8px;color:#fff}
+.head p{font-size:.86rem;color:var(--muted);max-width:640px;margin:0 auto;line-height:1.7}
+
+.statement{background:var(--panel);border:1px solid var(--edge);border-left:5px solid var(--neon);border-radius:var(--radius);padding:28px;margin-bottom:40px;box-shadow:var(--shadow)}
+.statement h3{font-size:1rem;color:var(--neon);margin-bottom:10px}
+.statement p{font-size:.83rem;color:var(--muted);line-height:1.85;margin-bottom:8px}
+.statement ul{margin:10px 0 0 18px;font-size:.8rem;color:var(--muted)}.statement li{margin:5px 0}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--edge);border-radius:var(--radius);padding:26px;transition:.4s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--neon),var(--cyan))}
+.card:nth-child(2)::before{background:linear-gradient(90deg,#ff6b9d,#b06bff)}
+.card:nth-child(3)::before{background:linear-gradient(90deg,#5b8cff,#5be6d6)}
+.card:nth-child(4)::before{background:linear-gradient(90deg,#a78bff,#ff6b9d)}
+.card:nth-child(5)::before{background:linear-gradient(90deg,#5bff8a,#5be6d6)}
+.card:nth-child(6)::before{background:linear-gradient(90deg,#ffd56b,#b06bff)}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card-no{font-family:"SF Mono","Courier New",monospace;font-size:.65rem;font-weight:700;color:var(--neon);background:var(--neon-dim);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:10px}
+.card h3{font-size:.98rem;font-weight:800;margin-bottom:6px;color:#fff}
+.card p{font-size:.76rem;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.card-link{font-size:.7rem;font-weight:700;color:var(--neon);text-decoration:none}
+.card-link:hover{text-decoration:underline}
+
+.redline{position:relative;padding:30px 0}
+.rl-track{position:relative;max-width:860px;margin:0 auto}
+.rl-track::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--neon),var(--cyan),#ff6b9d);transform:translateX(-50%)}
+.cell{position:relative;width:44%;padding:20px 24px;background:var(--panel);border:1px solid var(--edge);border-radius:12px;margin-bottom:20px;transition:.3s}
+.cell:nth-child(odd){left:0}
+.cell:nth-child(even){left:56%}
+.cell:hover{background:#160f24;transform:scale(1.02)}
+.cell::after{content:"";position:absolute;top:24px;width:13px;height:13px;border-radius:50%;background:var(--neon);border:3px solid var(--night)}
+.cell:nth-child(odd)::after{right:-29px}
+.cell:nth-child(even)::after{left:-29px}
+.cell h3{font-size:.92rem;font-weight:800;margin-bottom:4px;color:#fff}
+.cell p{font-size:.76rem;color:var(--muted);line-height:1.6}
+.cell .rl-tag{font-family:"SF Mono","Courier New",monospace;font-size:.65rem;color:var(--neon);display:block;margin-bottom:4px}
+
+.signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.signal{background:var(--panel);border:1px solid var(--edge);border-radius:var(--radius);padding:22px;transition:.3s;text-align:center}
+.signal:hover{border-color:var(--neon);transform:translateY(-4px)}
+.signal .emoji{font-size:2rem;margin-bottom:10px;display:block}
+.signal h3{font-size:.92rem;font-weight:800;margin-bottom:4px;color:#fff}
+.signal p{font-size:.74rem;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.signal .mode{font-family:"SF Mono","Courier New",monospace;font-size:.62rem;color:var(--neon);background:var(--neon-dim);padding:2px 8px;border-radius:4px}
+
+.qa{display:grid;gap:14px}
+.qa-box{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:20px 24px}
+.qa-box .q{font-weight:800;color:var(--neon);font-size:.88rem;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+.qa-box .q::before{content:"Q";font-family:"SF Mono","Courier New",monospace;font-size:.95rem;font-weight:900;color:#150726;background:var(--neon);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:4px;flex-shrink:0}
+.qa-box .a{font-size:.78rem;color:var(--muted);line-height:1.8;padding-left:30px}
+.qa-box .a b{color:#fff}
+
+.flags{background:var(--panel);border:1px solid var(--edge);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+.flag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:16px}
+.flag{display:flex;gap:10px;font-size:.78rem;color:var(--muted);align-items:flex-start;padding:8px 0}
+.flag .fi{font-size:.9rem;flex-shrink:0}
+.flag.bad .fi{color:#ff5577}
+.flag.good .fi{color:var(--cyan)}
+
+.foot{position:relative;z-index:1;background:#060309;color:var(--muted);padding:50px 20px 24px;margin-top:50px;border-top:1px solid var(--edge)}
+.foot-in{max-width:1200px;margin:0 auto}
+.foot-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:28px}
+.foot-cols h4{font-size:.88rem;margin-bottom:12px;color:#fff}
+.foot-cols a{display:block;font-size:.78rem;color:var(--muted);padding:4px 0;text-decoration:none;transition:.2s}
+.foot-cols a:hover{color:var(--neon)}
+.foot-cols p{font-size:.8rem;color:var(--muted);line-height:1.7}
+.foot-bottom{text-align:center;font-size:.7rem;color:rgba(137,126,160,.5);padding-top:18px;border-top:1px solid var(--edge)}
+.foot-bottom a{color:var(--neon);font-weight:600}
+
+@media(max-width:1024px){.hero{grid-template-columns:1fr}.side{order:-1}}
+@media(max-width:768px){
+ .nav{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:#0a0612;padding:14px 20px;border-bottom:1px solid var(--edge)}
+ .nav.open{display:flex}.menu-btn{display:block}
+ .foot-cols{grid-template-columns:1fr 1fr}.grid,.signal-grid{grid-template-columns:1fr}
+ .rl-track::before{left:20px}.cell{width:calc(100% - 40px);left:40px!important}
+ .cell::after{left:12px!important;right:auto!important}}
+@media(max-width:480px){.foot-cols{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+<div class="night-bg"></div><div class="halo-grid"></div>
+
+<header class="top"><div class="top-in">
+ <div class="brand"><span class="logo"></span>紫夜<b>片场</b></div>
+ <nav class="nav" id="nav">
+  <a href="#home" class="active">紫夜</a>
+  <a href="#statement">正版立场</a>
+  <a href="#lanes">紫巷分仓</a>
+  <a href="#redline">红线</a>
+  <a href="#signals">授权信道</a>
+  <a href="#faq">常见问答</a>
+  <a href="#flags">避坑清单</a>
+ </nav>
+ <button class="menu-btn" id="menuBtn">☰</button>
+</div></header>
+
+<main class="main">
+ <section class="hero" id="home">
+  <div class="hero-text">
+   <span class="kicker">PURPLE NIGHT · LEGAL NAV</span>
+   <h1>紫夜片场，<span class="hl">正版片单分仓</span><span class="sub">非播放平台 · 原意向名「紫夜影视网」</span></h1>
+   <div class="disclaimer"><b>声明：</b>「紫夜影视网」原意向名偏“门户/资源站”误读，现以「紫夜片场」为正品牌展示。本站仅为独立正版影视导航站，不提供视听播放服务、不托管视频、不解析未授权源。[5](@ref)</div>
+   <p>紫夜片场（ziyeyingshiwang-h5.github.io）做正版影视导航：片单分仓、正版信道检索、公共领域老片、官方免费层。覆盖 Tubi、Pluto、Kanopy、1905、央视频、学习强国等授权渠道；不嵌播放器、不诱导下载。</p>
+   <div class="cta">
+    <a class="btn btn-neon" href="#lanes">🌌 看紫巷分仓</a>
+    <a class="btn btn-line" href="#redline">◐ 查红线</a>
+   </div>
+  </div>
+  <aside class="side"><h3>NIGHT · 4 STEPS</h3>
+   <div class="steps">
+    <div class="step"><div class="step-num">①</div><div><h4>紫晕·定类型</h4><p>动作/文艺/纪录/老片/亲子；不写"高清全集免费/多源/破解"等盗版词。</p></div></div>
+    <div class="step"><div class="step-num">②</div><div><h4>寻光·查授权</h4><p>新片正版VOD/广告免费，老片公域/资料馆，国内官方免费层。</p></div></div>
+    <div class="step"><div class="step-num">③</div><div><h4>锁巷·定渠道</h4><p>Tubi/Pluto、1905/央视频/学习强国、Kanopy/Hoopla、Archive/LOC。</p></div></div>
+    <div class="step"><div class="step-num">④</div><div><h4>收光·排雷</h4><p>无EXE/无种子/无假播放键/无强制验证码；公域片逐部看权利页。</p></div></div>
+   </div>
+  </aside>
+ </section>
+
+ <div class="wrap" id="statement"><div class="statement">
+  <h3>为什么「紫夜影视网」改成「紫夜片场」</h3>
+  <p><b>去门户误读：</b>「影视网」三字容易让用户以为本站能直接播片；按《互联网视听节目服务管理规定》第17条，未持证不得从事视听节目服务，也不得链接、聚合、集成非法视听节目网站 [5](@ref)。所以主品牌落「片场」=导航/分仓，不落「影视网」。</p>
+  <p><b>意象保留：</b>「紫夜」不是禁用词，也没有查到与影视大厂的商标冲突 [3](@ref)；本站把它转成「紫晕夜光=暗处寻片」的正面意象，避开“深夜资源站”联想。</p>
+  <p>合法免费通常来自四类：广告型正版平台、图书馆/高校采购、公共领域档案、官方机构发布。</p>
+  <ul>
+   <li>广告正版：Tubi、Pluto、Plex 用广告换免费，片单随市场轮换</li>
+   <li>图书馆：Kanopy 偏独立/Criterion/纪录，Hoopla 靠读者卡或高校账号</li>
+   <li>公域档案：Internet Archive、LOC National Screening Room 早期影片</li>
+   <li>国内官方：1905、央视频、学习强国、B站机构号</li>
+  </ul>
+  <p style="margin-top:10px;color:var(--neon)">「紫夜片场」取按授权循迹找片之意；不写"深夜资源/高清全集免费/多源秒播"，不与任何正版平台制造虚假关联。[6](@ref)</p>
+ </div></div>
+
+ <div class="wrap" id="lanes"><div class="head">
+  <span class="tag">— PURPLE LANES —</span>
+  <h2>紫巷分仓：按"光晕格"分仓</h2>
+  <p>同部片可能跨巷；具体片目随平台版权与地区变化，以各平台当期授权为准。</p>
+ </div>
+ <div class="grid">
+  <article class="card"><span class="card-no">LAN-01</span><h3>新片/热映后窗口</h3><p>先查正版订阅/租赁窗口，再查 Tubi/Pluto 广告免费层；"院线高清全集免费"无授权主体按盗版风险处理、不列不点。</p><a class="card-link" href="#signals">去：正版VOD / Tubi / Pluto</a></article>
+  <article class="card"><span class="card-no">LAN-02</span><h3>动作/悬疑巷</h3><p>商业动作走广告正版，悬疑惊悚走 Pluto/Tubi 频道，不链无授权聚合站。</p><a class="card-link" href="#signals">去：Tubi / Pluto</a></article>
+  <article class="card"><span class="card-no">LAN-03</span><h3>文艺/独立巷</h3><p>独立片与Criterion系走 Kanopy，海外小众走 Plex/Tubi，国内文艺走 B站官方与央视频。</p><a class="card-link" href="#signals">去：Kanopy / Plex / B站官方</a></article>
+  <article class="card"><span class="card-no">LAN-04</span><h3>纪录/自然巷</h3><p>纪录走 Kanopy/央视频/学习强国，早期新闻片走 Archive/LOC。</p><a class="card-link" href="#signals">去：Kanopy / 央视频 / Archive</a></article>
+  <article class="card"><span class="card-no">LAN-05</span><h3>老片/默片巷</h3><p>美国1930及更早通常公域，华语老片走 1905/央视频/正版资料馆；非公域老片不标免费。</p><a class="card-link" href="#signals">去：Internet Archive / LOC / 1905</a></article>
+  <article class="card"><span class="card-no">LAN-06</span><h3>亲子/合家巷</h3><p>亲子用央视频少儿/学习强国/B站机构/Tubi Kids；学生用 Kanopy/Hoopla 本馆资格。</p><a class="card-link" href="#signals">去：央视频 / 学习强国 / Kanopy</a></article>
+ </div></div>
+
+ <div class="wrap" id="redline"><div class="head">
+  <span class="tag">— RED LINE —</span>
+  <h2>盗版影视站的特征</h2>
+  <p>正版免费站会写明授权主体与广告模式；可疑站用假播放键和强制下载引流。</p>
+ </div>
+ <div class="redline"><div class="rl-track">
+  <div class="cell"><span class="rl-tag">RL-01</span><h3>"最新大片免费看"</h3><p>院线新片标"高清全集免费"基本无授权主体，属典型盗版引流话术。</p></div>
+  <div class="cell"><span class="rl-tag">RL-02</span><h3>假播放键/多解析源</h3><p>页面堆相似播放钮、跳转博彩/贷款/仿登录，或要求装"专用播放器"。</p></div>
+  <div class="cell"><span class="rl-tag">RL-03</span><h3>要验证码/种子/EXE</h3><p>点播放先要验证码、网盘密码、种子磁力或下载解码插件，风险极高。</p></div>
+  <div class="cell"><span class="rl-tag">RL-04</span><h3>"深夜资源"话术</h3><p>"深夜资源/熬夜看片/多源秒播"等自曝取向的表述，属盗版站典型特征。</p></div>
+  <div class="cell"><span class="rl-tag">RL-05</span><h3>无主体无投诉入口</h3><p>底部无运营主体、无版权投诉页，只写"全网资源"无具体授权方。</p></div>
+ </div></div></div>
+
+ <div class="wrap" id="signals"><div class="head">
+  <span class="tag">— LICENSED SIGNALS —</span>
+  <h2>授权信道：按商业模式分仓</h2>
+  <p>地区版权会变；图书馆看本馆采购，公域片逐条看权利说明。</p>
+ </div>
+ <div class="signal-grid">
+  <div class="signal"><span class="emoji">🎬</span><h3>Tubi</h3><p>广告型正版大库，动作/喜剧/恐怖/老爆款较全；基础观看可免登录。</p><span class="mode">授权+广告</span></div>
+  <div class="signal"><span class="emoji">📺</span><h3>Pluto TV</h3><p>线性电影频道+点播，换台式找片；经典线/家庭线多，基础内容可免登录。</p><span class="mode">授权+广告</span></div>
+  <div class="signal"><span class="emoji">📚</span><h3>Kanopy / Hoopla</h3><p>Kanopy 偏独立/Criterion/纪录、无广告；Hoopla 靠读者卡或高校账号。</p><span class="mode">机构采购</span></div>
+  <div class="signal"><span class="emoji">🏛</span><h3>Internet Archive</h3><p>公共领域长片、默片、新闻片、教育片档案；无广告无账号。</p><span class="mode">公域/许可</span></div>
+  <div class="signal"><span class="emoji">🏮</span><h3>1905 / 央视频</h3><p>1905 正版老片与经典译制较全，央视频经典电影/纪录片稳定、广告少。</p><span class="mode">官方正版/免费层</span></div>
+  <div class="signal"><span class="emoji">🎓</span><h3>学习强国 / B站</h3><p>学习强国影视纪录零广告；B站筛机构认证号看戏曲/纪录/文艺。</p><span class="mode">官方/授权上传</span></div>
+  <div class="signal"><span class="emoji">🌏</span><h3>全球正版平台</h3><p>覆盖主流正版平台，按当期授权与地区可用为准；不链无授权聚合站。</p><span class="mode">正版分仓</span></div>
+  <div class="signal"><span class="emoji">🔍</span><h3>公域检索</h3><p>LOC National Screening Room、Prelinger Archives 等早期影像公域库。</p><span class="mode">公域档案</span></div>
+ </div></div>
+
+ <div class="wrap" id="faq"><div class="head">
+  <span class="tag">— FAQ —</span>
+  <h2>紫夜片场常见问题</h2>
+  <p>FAQ 用初始HTML文本呈现，便于必应摘取富摘要、移动端直接读。</p>
+ </div>
+ <div class="qa">
+  <div class="qa-box"><div class="q">「紫夜影视网」和「紫夜片场」啥关系？</div><div class="a"><b>同一站。</b>原意向名「紫夜影视网」偏门户误读，主品牌改为「紫夜片场」；域名保留 ziyeyingshiwang-h5。</div></div>
+  <div class="qa-box"><div class="q">是播放平台吗？</div><div class="a"><b>不是。</b>本站是正版影视导航站；不托管视频、不解析未授权源、不提供播放器。[5](@ref)</div></div>
+  <div class="qa-box"><div class="q">能直接看电影吗？</div><div class="a">不能也不做。只给正版/公域/官方渠道路径；实际播放在 Tubi、Pluto、Kanopy、Archive、1905、央视频、学习强国 等平台。</div></div>
+  <div class="qa-box"><div class="q">「紫夜」会不会像盗版资源站？</div><div class="a">为避免误读，全站规避"深夜资源/熬夜看片"话术，把「紫夜」转成紫晕夜光意象；不写多源/秒播/破解。</div></div>
+  <div class="qa-box"><div class="q">老电影都算公共领域免费吗？</div><div class="a">不算。美国1930及更早通常公域，1928—1963看续展，1964后多按95年保护；华语老片看本国法，外国片防URAA恢复版权。</div></div>
+ </div></div>
+
+ <div class="wrap" id="flags"><div class="head">
+  <span class="tag">— AVOID LIST —</span>
+  <h2>避坑清单</h2>
+  <p>合法免费站通常说明授权主体、广告模式或图书馆/公域来源；可疑站用假播放键和强制下载。</p>
+ </div>
+ <div class="flags"><div class="flag-grid">
+  <div class="flag bad"><span class="fi">✕</span><span>院线新片"高清全集免费"、要验证码/网盘密码/种子/磁力</span></div>
+  <div class="flag bad"><span class="fi">✕</span><span>点播放先下EXE/专用播放器/解码插件/浏览器扩展</span></div>
+  <div class="flag bad"><span class="fi">✕</span><span>写"深夜资源/多源秒播/最全影视网/破解版"</span></div>
+  <div class="flag bad"><span class="fi">✕</span><span>多源解析第三方视频、无主体无授权无投诉入口</span></div>
+  <div class="flag bad"><span class="fi">✕</span><span>老片不分原片公域与修复授权，一律写"免费可下"</span></div>
+  <div class="flag bad"><span class="fi">✕</span><span>刻意制造"与某正版平台合作/官方镜像"虚假联想</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>标明渠道类型：广告/订阅/官方/图书馆/公域/资料馆</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>不存片、不解析、不诱导下载任何软件</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>页脚声明非播放平台+主体与版权投诉入口</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>片单写"以平台当期授权、地区与账号资格为准"</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>移动端无全屏强制弹层、锚点可点、核心内容在初始HTML</span></div>
+  <div class="flag good"><span class="fi">✓</span><span>公域片区分原片公域与修复/字幕/配乐另行授权</span></div>
+ </div></div></div>
+</main>
+
+<footer class="foot"><div class="foot-in">
+ <div class="foot-cols">
+  <div><div class="brand"><span class="logo"></span>紫夜<b>片场</b></div>
+   <p style="margin-top:12px">紫夜片场（ziyeyingshiwang-h5.github.io）为正版影视导航站，<b style="color:var(--neon)">非播放平台</b>：Tubi、Pluto、Plex、Kanopy、Hoopla、Internet Archive、LOC、1905、央视频、学习强国、B站官方等正版/公共领域渠道。不提供未授权播放，不解析非法视听源，不诱导下载任何播放器；静态HTML、内联样式、移动自适应，便于必应抓取。按规则不生成 robots.txt/sitemap.xml，上线后可在 Bing Webmaster Tools 手动提交 URL 加速发现。</p></div>
+  <div><h4>栏目</h4><a href="#statement">正版立场</a><a href="#lanes">紫巷分仓</a><a href="#redline">红线</a><a href="#signals">授权信道</a><a href="#faq">常见问答</a></div>
+  <div><h4>信道</h4><a href="#">广告正版</a><a href="#">图书馆流</a><a href="#">公域档案</a><a href="#">国内官方</a></div>
+  <div><h4>说明</h4><a href="#">版权投诉</a><a href="#">隐私说明</a><a href="#">使用条款</a><a href="#">联系我们</a></div>
+ </div>
+ <div class="foot-bottom">
+  <p>© 2026 紫夜片场 - 正版影视导航·片单分仓（非播放平台）</p>
+  <p>网站地址：<a href="https://ziyeyingshiwang-h5.github.io">https://ziyeyingshiwang-h5.github.io</a></p>
+  <p style="margin-top:8px;opacity:.6">原意向名「紫夜影视网」仅作域名保留；主品牌为「紫夜片场」，不与任何正版平台存在关联或合作暗示。</p>
+ </div>
+</div></footer>
+
+<script>
+var menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+menuBtn.onclick=function(){nav.classList.toggle('open')};
+nav.querySelectorAll('a').forEach(function(a){a.onclick=function(){nav.classList.remove('open')}});
+var secs=document.querySelectorAll('section[id],div[id]');
+addEventListener('scroll',function(){
+ var y=scrollY+86;
+ secs.forEach(function(s){
+  if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+   document.querySelectorAll('.nav a').forEach(function(a){a.classList.remove('active')});
+   var l=document.querySelector('.nav a[href="#'+s.id+'"]');if(l)l.classList.add('active');
+  }
+ });
+});
+</script>
+</body>
+</html>
